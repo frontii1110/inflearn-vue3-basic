@@ -1,28 +1,26 @@
 <template>
-	<div></div>
+	<div>
+		<p>{{ message }}</p>
+		<p>{{ reverseMessage }}</p>
+	</div>
 </template>
 
 <script>
 import { ref, watch } from 'vue';
+
 export default {
 	setup() {
-		const x = ref(0);
-		const y = ref(0);
+		const message = ref('Hello Vue3');
+		const reverseMessage = ref('');
 
-		// 1. 반응형 변경값 감시
-		// watch(
-		// 	() => x.value + y.value,
-		// 	(sum, oldValue) => {
-		// 		console.log('sum: ', sum);
-		// 		console.log('oldValue: ', oldValue);
-		// 	},
-		// );
-
-		// 2. 매개변수로 array를 넘겨서 따로 감시하기
-		watch([x, y], ([newX, newY]) => {
-			console.log(newX, newY);
-		});
-		return { x, y };
+		watch(
+			message,
+			newValue => {
+				reverseMessage.value = newValue.split('').reverse().join('');
+			},
+			{ immediate: true },
+		);
+		return { message, reverseMessage };
 	},
 };
 </script>
