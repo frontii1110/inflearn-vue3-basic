@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 컴포넌트가 느리게 생성 되게 하기 위해서 cdn으로 설치해서 실습! -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Vite App</title>
+    <style>
+      /* display: none을 해두면 준비되기 전에 원래 코드가 보이는 것을 숨길 수 있음 */
+      /* [v-cloak] {
+        display: none
+      } */
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 인스턴스가 컴파일 완료 되기 전까지 남아 있다가 준비가 되면 사라지게 함 -->
+      <!-- 로딩화면 작업시 사용 -->
+      <p v-cloak>{{ message }}</p>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            message: '안녕하세요'
+          }
+        }
+      }
+      setTimeout(() => {
+        Vue.createApp(App).mount('#app')
+      }, 3000)
+    </script>
+  </body>
+</html>
