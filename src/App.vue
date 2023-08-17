@@ -1,26 +1,18 @@
 <template>
 	<div>
-		<p>{{ message }}</p>
-		<p>{{ reverseMessage }}</p>
+		<TheNav></TheNav>
+		<TheView></TheView>
 	</div>
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import TheNav from '@/components/TheNav.vue';
+import TheView from '@/components/TheView.vue';
 
 export default {
+	components: { TheNav, TheView },
 	setup() {
-		const message = ref('Hello Vue3');
-		const reverseMessage = ref('');
-
-		watch(
-			message,
-			newValue => {
-				reverseMessage.value = newValue.split('').reverse().join('');
-			},
-			{ immediate: true },
-		);
-		return { message, reverseMessage };
+		return {};
 	},
 };
 </script>
